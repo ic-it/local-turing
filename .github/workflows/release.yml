@@ -57,4 +57,5 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: |
             Release notes for ${{ github.ref_name }}
-          files: build/*.zip
+          artifacts: build/local-turing-${{ github.ref_name }}-*/local-turing-${{ github.ref_name }}-*.zip
+          allowUpdates: true
