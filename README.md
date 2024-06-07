@@ -23,37 +23,17 @@ go install .
 
 ## Configuration
 
-**Test file schema**:
-[tests.json format](./assets/tests-schema.json)
+**Schemas**:
+- [tests.json](https://raw.githubusercontent.com/ic-it/local-turing/main/assets/schemas/tests.json)
+- [config.json](https://raw.githubusercontent.com/ic-it/local-turing/main/assets/schemas/config.json)
 
-```json
-{
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "properties": {
-        "test_name": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "inputs": {
-                        "type": "string"
-                    },
-                    "outputs": {
-                        "type": "string"
-                    }
-                },
-                "required": ["inputs", "outputs"]
-            }
-        }
-    },
-    "required": ["test_name"]
-}
-```
-
+**Test file example**:  
+[tests.json gist](https://gist.github.com/ic-it/7c401138b41ffc2b4f3c1105abacdabf)
 
 **Example config file**:
 ```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ic-it/local-turing/main/assets/schemas/config.json
+
 # Cloud Turing configuration
 cloud-turing:
   name: xchaban
@@ -107,7 +87,7 @@ local-turing:
 
 **Create or download tests file**:
 ```bash
-curl -o tests.json https://gist.githubusercontent.com/ic-it/7c401138b41ffc2b4f3c1105abacdabf/raw/5b571bd450aa488f68f804b676d3081c3531d94a/tests.json
+curl -o tests.json https://gist.githubusercontent.com/ic-it/7c401138b41ffc2b4f3c1105abacdabf/raw/12eb05df5843543386f3839d90f0825c453f6a30/tests.json
 ```
 
 **Run local-turing**:
