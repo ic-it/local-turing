@@ -2,6 +2,17 @@
 
 This is a simple tool to run your tests on your local machine.
 
+![Example of usage](./assets/demo.gif)
+
+<!-- spoiler -->
+
+<details>
+  <summary>Open to see the demo</summary>
+
+[![asciicast](https://asciinema.org/a/2Z3VLJZJXx91k32TABBpRsIxA.svg)](https://asciinema.org/a/2Z3VLJZJXx91k32TABBpRsIxA)
+
+</details>
+
 ## Installation
 
 ```bash
