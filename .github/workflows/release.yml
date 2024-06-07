@@ -1,30 +1,59 @@
-name: release
+name: Build and Release on Tag
 
 on:
   push:
     tags:
-      - 'v*'  # Trigger the workflow on tags starting with 'v'
+      - 'v*'
 
 jobs:
-  generate:
-    name: Generate cross-platform builds
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        goos: [windows, linux, darwin]
+        goarch: [amd64]
+
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Generate build files
-        uses: thatisuday/go-build-action@v1
+      - name: Set up Go
+        uses: actions/setup-go@v4
         with:
-          platforms: "linux/amd64, darwin/amd64, windows/amd64"
-          package: "demo"
-          name: "math"
-          compress: "true"
-          dest: "dist"
+          go-version: '1.22'  # Adjust the Go version as needed
 
-      - name: Copy build-artifacts
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build binaries
+        run: |
+          mkdir -p build
+          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -o build/${{ matrix.goos }}-${{ matrix.goarch }}/local-turing main.go
+
+      - name: Archive binaries
+        run: |
+          zip -r build/local-turing-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}.zip build/${{ matrix.goos }}-${{ matrix.goarch }}
+
+      - name: Upload release assets
+        uses: actions/upload-artifact@v3
         with:
-          args: "./dist/*.tar.gz"
+          name: local-turing-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: build/local-turing-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: build
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Release notes for ${{ github.ref_name }}
+          files: build/*.zip
