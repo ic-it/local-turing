@@ -16,9 +16,7 @@ This is a simple tool to run your tests on your local machine.
 ## Installation
 
 ```bash
-git clone https://github.com/ic-it/local-turing.git
-cd local-turing
-go install .
+go install github.com/ic-it/local-turing@latest
 ```
 
 ## Configuration
