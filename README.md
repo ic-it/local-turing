@@ -1,5 +1,7 @@
 # Local Turing
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ic-it/local-turing?style=for-the-badge)](https://github.com/ic-it/local-turing/releases/latest)
+
 This is a simple tool to run your tests on your local machine.
 
 ![Example of usage](./assets/demo.gif)
@@ -18,6 +20,8 @@ This is a simple tool to run your tests on your local machine.
 ```bash
 go install github.com/ic-it/local-turing@latest
 ```
+
+Or download the latest release from [here](https://github.com/ic-it/local-turing/releases/latest).
 
 ## Configuration
 
