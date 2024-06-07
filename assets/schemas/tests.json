@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        }
+    },
+    "patternProperties": {
+        ".*": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "inputs": {
+                        "type": "string"
+                    },
+                    "outputs": {
+                        "type": "string"
+                    }
+                },
+                "required": ["inputs", "outputs"],
+                "additionalProperties": false
+            }
+        }
+    },
+    "additionalProperties": false
+}

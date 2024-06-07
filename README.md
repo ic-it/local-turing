@@ -23,6 +23,35 @@ go install .
 
 ## Configuration
 
+**Test file schema**:
+[tests.json format](./assets/tests-schema.json)
+
+```json
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "test_name": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "inputs": {
+                        "type": "string"
+                    },
+                    "outputs": {
+                        "type": "string"
+                    }
+                },
+                "required": ["inputs", "outputs"]
+            }
+        }
+    },
+    "required": ["test_name"]
+}
+```
+
+
 **Example config file**:
 ```yaml
 # Cloud Turing configuration

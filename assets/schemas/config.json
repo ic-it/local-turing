@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "cloud-turing": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "password": { "type": "string" },
+                "url": { "type": "string", "format": "uri" }
+            },
+            "required": ["name", "password"],
+            "additionalProperties": false
+        },
+        "local-turing": {
+            "type": "object",
+            "properties": {
+                "tests-file": { "type": "string" },
+                "build-commands": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "executable": { "type": "string" },
+                "main-file": { "type": "string" },
+                "assignments": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": { "type": "string" },
+                            "dir": { "type": "string" },
+                            "build-commands": {
+                                "type": "array",
+                                "items": { "type": "string" }
+                            },
+                            "executable": { "type": "string" },
+                            "main-file": { "type": "string" },
+                            "push-name": { "type": "string" }
+                        },
+                        "required": ["name"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "required": ["tests-file"],
+            "additionalProperties": false
+        }
+    },
+    "required": ["cloud-turing", "local-turing"],
+    "additionalProperties": false
+}
