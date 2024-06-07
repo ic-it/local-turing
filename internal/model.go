@@ -11,7 +11,7 @@ tests.json format:
     "test_name": [
         {
 			"inputs": "input",
-            "outputs": "output"
+			"outputs": "output"
         },
         ...
     ]
