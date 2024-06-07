@@ -5,21 +5,12 @@ import (
 	"io"
 )
 
-/*
-tests.json format:
-{
-    "test_name": [
-        {
-			"inputs": "input",
-			"outputs": "output"
-        },
-        ...
-    ]
-}
-*/
-
 type (
-	Tests map[string][]struct {
+	Tests struct {
+		Schema string            `json:"$schema"`
+		Tests  map[string][]Test `json:"tests"`
+	}
+	Test struct {
 		Inputs  string `json:"inputs"`
 		Outputs string `json:"outputs"`
 	}
@@ -28,7 +19,7 @@ type (
 func TestsUnmarshal(r io.Reader) (Tests, error) {
 	var tests Tests
 	if err := json.NewDecoder(r).Decode(&tests); err != nil {
-		return nil, err
+		return tests, err
 	}
 	return tests, nil
 }

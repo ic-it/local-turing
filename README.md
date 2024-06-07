@@ -85,7 +85,7 @@ local-turing:
 
 **Create or download tests file**:
 ```bash
-curl -o tests.json https://gist.githubusercontent.com/ic-it/7c401138b41ffc2b4f3c1105abacdabf/raw/12eb05df5843543386f3839d90f0825c453f6a30/tests.json
+curl -o tests.json https://gist.githubusercontent.com/ic-it/7c401138b41ffc2b4f3c1105abacdabf/raw/e10872b2a161f04bfb357cdd93d634695b93fc60/tests.json
 ```
 
 **Run local-turing**:

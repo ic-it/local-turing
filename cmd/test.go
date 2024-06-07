@@ -51,15 +51,12 @@ var testCmd = &cobra.Command{
 		for i, assignment := range assignments {
 			waitGroup.Add(1)
 			logger.Debugw("running test", "assignment", assignment)
-			tests, ok := tests[assignment.Name]
+			tests, ok := tests.Tests[assignment.Name]
 			if !ok {
 				logger.Infow("no tests for assignment", "assignment", assignment)
 				return ErrNoTests
 			}
-			go func(assignment internal.LocalTuringAssignment, tests []struct {
-				Inputs  string `json:"inputs"`
-				Outputs string `json:"outputs"`
-			}, i int) {
+			go func(assignment internal.LocalTuringAssignment, tests []internal.Test, i int) {
 				writers[i] = bufio.NewWriter(os.Stdout)
 				errors[i] = processAssignment(assignment, tests, writers[i])
 				waitGroup.Done()
@@ -79,10 +76,7 @@ var testCmd = &cobra.Command{
 	},
 }
 
-func processAssignment(assignment internal.LocalTuringAssignment, tests []struct {
-	Inputs  string `json:"inputs"`
-	Outputs string `json:"outputs"`
-}, w *bufio.Writer) error {
+func processAssignment(assignment internal.LocalTuringAssignment, tests []internal.Test, w *bufio.Writer) error {
 	logger.Debugw("running tests", "assignment", assignment)
 	logger.Debugw("build assignment", "assignment", assignment)
 	if _, err := os.Stat(assignment.Dir); err != nil {

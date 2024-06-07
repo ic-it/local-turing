@@ -4,24 +4,31 @@
     "properties": {
         "$schema": {
             "type": "string"
-        }
-    },
-    "patternProperties": {
-        ".*": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "inputs": {
-                        "type": "string"
-                    },
-                    "outputs": {
-                        "type": "string"
+        },
+        "tests": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "inputs": {
+                                "type": "string"
+                            },
+                            "outputs": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "inputs",
+                            "outputs"
+                        ],
+                        "additionalProperties": false
                     }
-                },
-                "required": ["inputs", "outputs"],
-                "additionalProperties": false
-            }
+                }
+            },
+            "additionalProperties": false
         }
     },
     "additionalProperties": false
