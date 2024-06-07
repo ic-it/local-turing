@@ -1,9 +1,9 @@
 name: release
 
 on:
-  release:
-    types:
-      - created
+  push:
+    tags:
+      - 'v*'  # Trigger the workflow on tags starting with 'v'
 
 jobs:
   generate:
