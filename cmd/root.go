@@ -10,7 +10,7 @@ var rootCmd = &cobra.Command{
 	Use:     "local-turing",
 	Short:   "A simple CLI tool to run your tests on your local machine",
 	Long:    `A simple CLI tool to run your tests on your local machine`,
-	Version: "0.0.1",
+	Version: "0.1.0-alpha",
 }
 
 func Execute() {
